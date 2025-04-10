@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך שימוש - מערכת אוטומציה לוואטסאפ</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            direction: rtl;
+        }
+        h1 {
+            color: #25D366;
+            border-bottom: 2px solid #25D366;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #128C7E;
+            margin-top: 30px;
+        }
+        h3 {
+            margin-top: 25px;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+        }
+        .note {
+            background-color: #e8f4fd;
+            border-right: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: right;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .toc {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        .toc ul {
+            list-style-type: none;
+            padding-right: 20px;
+        }
+        .toc li {
+            margin-bottom: 5px;
+        }
+        a {
+            color: #128C7E;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>מדריך שימוש - מערכת אוטומציה לוואטסאפ</h1>
+    
+    <div class="toc">
+        <h2>תוכן עניינים</h2>
+        <ul>
+            <li><a href="#intro">1. מבוא</a></li>
+            <li><a href="#installation">2. התקנה ופריסה</a></li>
+            <li><a href="#clients">3. ניהול לקוחות</a></li>
+            <li><a href="#flows">4. תסריטי שיחה</a></li>
+            <li><a href="#integration">5. הטמעה באתרי אינטרנט</a></li>
+            <li><a href="#leads">6. מעקב אחר לידים</a></li>
+            <li><a href="#email">7. התראות אימייל</a></li>
+            <li><a href="#dashboard">8. לוח בקרה למנהל</a></li>
+            <li><a href="#troubleshooting">9. פתרון בעיות נפוצות</a></li>
+        </ul>
+    </div>
+    
+    <h2 id="intro">1. מבוא</h2>
+    
+    <p>מערכת האוטומציה לוואטסאפ מאפשרת לך ליצור בוטים מותאמים אישית לוואטסאפ עבור לקוחות שונים. המערכת כוללת:</p>
+    
+    <ul>
+        <li><strong>בק-אנד בפיירבייס</strong> - מאחסן את נתוני הלקוחות, תסריטי השיחה והלידים</li>
+        <li><strong>וידג'ט לאתרי אינטרנט</strong> - מאפשר ללקוחות להטמיע את הבוט באתר שלהם</li>
+        <li><strong>מערכת מעקב לידים</strong> - מאפשרת לעקוב אחר לידים שנאספים מהבוט</li>
+        <li><strong>התראות אימייל</strong> - שולחת התראות בזמן אמת ללקוחות כאשר מתקבל ליד חדש</li>
+        <li><strong>לוח בקרה למנהל</strong> - מאפשר לנהל לקוחות, תסריטי שיחה ולידים</li>
+    </ul>
+    
+    <h2 id="installation">2. התקנה ופריסה</h2>
+    
+    <h3>דרישות מקדימות</h3>
+    
+    <ul>
+        <li>חשבון Firebase</li>
+        <li>Node.js (גרסה 16 ומעלה)</li>
+        <li>Firebase CLI</li>
+    </ul>
+    
+    <h3>שלבי התקנה</h3>
+    
+    <ol>
+        <li>
+            <p><strong>הורדת הפרויקט</strong></p>
+            <pre><code>git clone https://github.com/orelIL123/botmanus.git
+cd botmanus</code></pre>
+        </li>
+        <li>
+            <p><strong>התקנת תלויות</strong></p>
+            <pre><code>cd functions
+npm install
+cd ..</code></pre>
+        </li>
+        <li>
+            <p><strong>פריסה לפיירבייס</strong></p>
+            <pre><code>chmod +x deploy.sh
+./deploy.sh</code></pre>
+            
+            <p>הסקריפט יבצע את הפעולות הבאות:</p>
+            <ul>
+                <li>התחברות לחשבון Firebase</li>
+                <li>אתחול הפרויקט (אם צריך)</li>
+                <li>התקנת תלויות</li>
+                <li>בניית הפרויקט</li>
+                <li>פריסה לפיירבייס</li>
+            </ul>
+        </li>
+        <li>
+            <p><strong>בדיקת המערכת</strong></p>
+            <pre><code>chmod +x test.sh
+./test.sh</code></pre>
+            
+            <p>הסקריפט יבדוק את כל רכיבי המערכת ויוודא שהם פועלים כראוי.</p>
+        </li>
+    </ol>
+    
+    <h2 id="clients">3. ניהול לקוחות</h2>
+    
+    <h3>יצירת לקוח חדש</h3>
+    
+    <ol>
+        <li>היכנס ללוח הבקרה למנהל בכתובת: <code>https://whatsapp-bot-automation.web.app/admin-dashboard.html</code></li>
+        <li>לחץ על "לקוחות" בתפריט הצד</li>
+        <li>לחץ על "הוסף לקוח חדש"</li>
+        <li>מלא את הפרטים הבאים:
+            <ul>
+                <li><strong>שם העסק</strong>: שם העסק של הלקוח</li>
+                <li><strong>מספר וואטסאפ</strong>: מספר הטלפון של העסק בפורמט בינלאומי (לדוגמה: 972501234567)</li>
+                <li><strong>אימייל</strong>: כתובת האימייל לקבלת התראות על לידים חדשים</li>
+                <li><strong>הודעת פתיחה</strong>: ההודעה שתוצג ללקוחות בתחילת השיחה</li>
+            </ul>
+        </li>
+        <li>לחץ על "שמור"</li>
+    </ol>
+    
+    <h3>עריכת לקוח קיים</h3>
+    
+    <ol>
+        <li>היכנס ללוח הבקרה למנהל</li>
+        <li>לחץ על "לקוחות" בתפריט הצד</li>
+        <li>מצא את הלקוח שברצונך לערוך ולחץ על "ערוך"</li>
+        <li>עדכן את הפרטים הרצויים</li>
+        <li>לחץ על "שמור"</li>
+    </ol>
+    
+    <h3>מחיקת לקוח</h3>
+    
+    <ol>
+        <li>היכנס ללוח הבקרה למנהל</li>
+        <li>לחץ על "לקוחות" בתפריט הצד</li>
+        <li>מצא את הלקוח שברצונך למחוק ולחץ על "מחק"</li>
+        <li>אשר את המחיקה</li>
+    </ol>
+    
+    <h2 id="flows">4. תסריטי שיחה</h2>
+    
+    <p>תסריטי שיחה מגדירים את מהלך השיחה בין הבוט ללקוח. כל תסריט מורכב מצעדים (steps) שמגדירים את התנהגות הבוט.</p>
+    
+    <h3>סוגי צעדים</h3>
+    
+    <ul>
+        <li><strong>message</strong>: הצגת הודעה ללקוח</li>
+        <li><strong>options</strong>: הצגת אפשרויות בחירה ללקוח</li>
+        <li><strong>collect_info</strong>: איסוף מידע מהלקוח (שם, טלפון וכו')</li>
+        <li><strong>end</strong>: סיום השיחה</li>
+    </ul>
+    
+    <h3>יצירת תסריט שיחה חדש</h3>
+    
+    <ol>
+        <li>היכנס ללוח הבקרה למנהל</li>
+        <li>לחץ על "תסריטי שיחה" בתפריט הצד</li>
+        <li>בחר לקוח מהרשימה הנפתחת</li>
+        <li>לחץ על "הוסף תסריט חדש"</li>
+        <li>מלא את הפרטים הבאים:
+            <ul>
+                <li><strong>שם התסריט</strong>: שם ייחודי לתסריט</li>
+                <li><strong>מזהה התסריט</strong>: מזהה ייחודי לתסריט (ללא רווחים או תווים מיוחדים)</li>
+            </ul>
+        </li>
+        <li>הוסף צעדים לתסריט:
+            <ul>
+                <li>לחץ על "הוסף צעד"</li>
+                <li>בחר את סוג הצעד</li>
+                <li>מלא את הפרטים הנדרשים</li>
+                <li>הגדר את הצעד הבא בתסריט</li>
+            </ul>
+        </li>
+        <li>לחץ על "שמור"</li>
+    </ol>
+    
+    <h3>עריכת תסריט קיים</h3>
+    
+    <ol>
+        <li>היכנס ללוח הבקרה למנהל</li>
+        <li>לחץ על "תסריטי שיחה" בתפריט הצד</li>
+        <li>בחר לקוח מהרשימה הנפתחת</li>
+        <li>מצא את התסריט שברצונך לערוך ולחץ על "ערוך"</li>
+        <li>עדכן את הפרטים הרצויים</li>
+        <li>לחץ על "שמור"</li>
+    </ol>
+    
+    <h3>דוגמה לתסריט שיחה</h3>
+    
+    <p>להלן דוגמה לתסריט שיחה בפורמט JSON:</p>
+    
+    <pre><code>{
+  "flowId": "new_collection",
+  "name": "מידע על הקולקציה החדשה",
+  "steps": [
+    {
+      "id": "collect_info",
+      "type": "collect_info",
+      "message": "נשמח לספר לך על הקולקציה החדשה שלנו! כדי שנוכל לעדכן אותך בפריטים שמתאימים בדיוק לך, אנא ספר/י לנו קצת על עצמך:",
+      "fields": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "שם מלא",
+          "required": true
+        },
+        {
+          "id": "phone",
+          "type": "phone",
+          "label": "מספר טלפון",
+          "required": true
+        }
+      ],
+      "next": "collection_preferences"
+    },
+    {
+      "id": "collection_preferences",
+      "type": "options",
+      "message": "תודה {{name}}! באיזה סוג פריטים מהקולקציה החדשה את/ה מתעניין/ת?",
+      "options": [
+        {
+          "id": "mens",
+          "text": "בגדי גברים",
+          "next": "mens_info"
+        },
+        {
+          "id": "womens",
+          "text": "בגדי נשים",
+          "next": "womens_info"
+        }
+      ]
+    },
+    {
+      "id": "mens_info",
+      "type": "message",
+      "message": "הקולקציה החדשה לגברים שלנו כוללת חולצות מעוצבות ומכנסיים אלגנטיים.",
+      "next": "end"
+    },
+    {
+      "id": "womens_info",
+      "type": "message",
+      "message": "הקולקציה החדשה לנשים שלנו כוללת שמלות מעוצבות וחולצות אופנתיות.",
+      "next": "end"
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "message": "תודה שהתעניינת בקולקציה החדשה שלנו!"
+    }
+  ]
+}</code></pre>
+    
+    <h2 id="integration">5. הטמעה באתרי אינטרנט</h2>
+    
+    <h3>שיטת התקנה בסיסית</h3>
+    
+    <p>הוסף את הקוד הבא לדף ה-HTML של האתר, ממש לפני תג הסגירה של ה-body:</p>
+    
+    <pre><code>&lt;script src="https://us-central1-whatsapp-bot-automation.cloudfunctions.net/app/js/whatsapp-bot-widget.js" 
+        data-whatsapp-bot-client="YOUR_CLIENT_ID" 
+        data-whatsapp-bot-api="https://us-central1-whatsapp-bot-automation.cloudfunctions.net"&gt;&lt;/script&gt;</code></pre>
+    
+    <p>החלף את <code>YOUR_CLIENT_ID</code> במזהה הלקוח שקיבלת בעת יצירת הלקוח.</p>
+    
+    <div class="note">
+        <p><strong>שים לב:</strong> מזהה הלקוח הוא מחרוזת ייחודית שמזהה את העסק שלך במערכת. אם אינך יודע מהו המזהה שלך, צור קשר עם מנהל המערכת.</p>
+    </div>
+    
+    <h3>התאמה אישית</h3>
+    
+    <p>ניתן להתאים את מראה הכפתור ואת התנהגותו באמצעות קוד JavaScript נוסף:</p>
+    
+    <pre><code>&lt;script&gt;
+    document.addEventListener('DOMContentLoaded', function() {
+        WhatsAppBotWidget.init({
+            clientId: 'YOUR_CLIENT_ID',
+            apiUrl: 'https://us-central1-whatsapp-bot-automation.cloudfunctions.net',
+            buttonPosition: 'right', // 'right' או 'left'
+            buttonColor: '#25D366', // צבע הכפתור
+            buttonSize: '60px', // גודל הכפתור
+            buttonRadius: '50%', // עיגול הכפתור
+            buttonMargin: '20px', // מרחק מהקצה
+            buttonText: 'צור קשר', // טקסט שיוצג ליד הכפתור
+            showButtonText: true // האם להציג טקסט ליד הכפתור
+        });
+    });
+&lt;/script&gt;</code></pre>
+    
+    <h3>שילוב בפלטפורמות נפוצות</h3>
+    
+    <h4>WordPress</h4>
+    
+    <p><strong>שיטה 1: שימוש בתוסף Header and Footer Scripts</strong></p>
+    <ol>
+        <li>התקן את התוסף "Header and Footer Scripts"</li>
+        <li>לך להגדרות התוסף</li>
+        <li>הוסף את קוד ההטמעה לחלק ה-Footer</li>
+        <li>שמור את השינויים</li>
+    </ol>
+    
+    <p><strong>שיטה 2: עריכת קובץ התבנית</strong></p>
+    <ol>
+        <li>לך ל-Appearance > Theme Editor</li>
+        <li>ערוך את קובץ footer.php</li>
+        <li>הוסף את קוד ההטמעה לפני תג הסגירה של ה-body</li>
+        <li>שמור את השינויים</li>
+    </ol>
+    
+    <h4>Wix</h4>
+    
+    <ol>
+        <li>היכנס לעורך האתר של Wix</li>
+        <li>לחץ על "הוסף" בתפריט הצד</li>
+        <li>בחר "HTML מותאם אישית"</li>
+        <li>הוסף את קוד ההטמעה</li>
+        <li>לחץ על "החל"</li>
+        <li>מקם את האלמנט בתחתית הדף (הוא יהיה בלתי נראה, אך הכפתור יופיע)</li>
+        <li>הגדר את האלמנט להופיע בכל הדפים</li>
+    </ol>
+    
+    <h4>Shopify</h4>
+    
+    <ol>
+        <li>היכנס ללוח הבקרה של Shopify</li>
+        <li>לך ל-Online Store > Themes</li>
+        <li>לחץ על "Actions" ובחר "Edit code"</li>
+        <li>חפש את הקובץ theme.liquid</li>
+        <li>הוסף את קוד ההטמעה לפני תג הסגירה של ה-body</li>
+        <li>לחץ על "Save"</li>
+    </ol>
+    
+    <h2 id="leads">6. מעקב אחר לידים</h2>
+    
+    <h3>צפייה בלידים</h3>
+    
+    <ol>
+        <li>היכנס ללוח הבקרה למנהל</li>
+        <li>לחץ על "לידים" בתפריט הצד</li>
+        <li>בחר לקוח מהרשימה הנפתחת (או השאר "כל הלקוחות" לצפייה בכל הלידים)</li>
+        <li>הלידים יוצגו בטבלה עם הפרטים הבאים:
+            <ul>
+                <li>שם</li>
+                <li>טלפון</li>
+                <li>לקוח</li>
+                <li>תסריט שיחה</li>
+                <li>תאריך</li>
+                <li>פעולות</li>
+            </ul>
+        </li>
+    </ol>
+    
+    <h3>סינון לידים</h3>
+    
+    <p>ניתן לסנן את הלידים לפי:</p>
+    <ul>
+        <li>לקוח</li>
+        <li>תאריך</li>
+        <li>תסריט שיחה</li>
+    </ul>
+    
+    <h3>ייצוא לידים</h3>
+    
+    <ol>
+        <li>היכנס ללוח הבקרה למנהל</li>
+        <li>לחץ על "לידים" בתפריט הצד</li>
+        <li>בחר לקוח מהרשימה הנפתחת (אופציונלי)</li>
+        <li>לחץ על "ייצא לקובץ CSV"</li>
+        <li>הקובץ יורד למחשב שלך</li>
+    </ol>
+    
+    <h2 id="email">7. התראות אימייל</h2>
+    
+    <p>המערכת שולחת התראות אימייל ללקוחות כאשר מתקבל ליד חדש. ההתראה כוללת:</p>
+    <ul>
+        <li>שם הליד</li>
+        <li>מספר טלפון</li>
+        <li>תאריך ושעה</li>
+        <li>תסריט השיחה המלא</li>
+    </ul>
+    
+    <h3>הגדרת אימייל</h3>
+    
+    <ol>
+        <li>היכנס ללוח הבקרה למנהל</li>
+        <li>לחץ על "הגדרות" בתפריט הצד</li>
+        <li>מלא את הפרטים הבאים:
+            <ul>
+                <li><strong>כתובת אימייל לשליחת התראות</strong>: כתובת האימייל ממנה יישלחו ההתראות</li>
+                <li><strong>סיסמת אימייל</strong>: סיסמת האימייל (מומלץ להשתמש בסיסמה ייעודית לאפליקציות)</li>
+                <li><strong>שירות אימייל</strong>: בחר את שירות האימייל (Gmail, Outlook, Yahoo וכו')</li>
+            </ul>
+        </li>
+        <li>לחץ על "שמור הגדרות"</li>
+    </ol>
+    
+    <h3>בדיקת אימייל</h3>
+    
+    <ol>
+        <li>היכנס ללוח הבקרה למנהל</li>
+        <li>לחץ על "הגדרות" בתפריט הצד</li>
+        <li>לחץ על "שלח אימייל בדיקה"</li>
+        <li>הזן את כתובת האימייל לבדיקה</li>
+        <li>לחץ על "שלח"</li>
+    </ol>
+    
+    <h2 id="dashboard">8. לוח בקרה למנהל</h2>
+    
+    <p>לוח הבקרה למנהל מאפשר לך לנהל את כל היבטי המערכת:</p>
+    
+    <h3>סקירה כללית</h3>
+    
+    <p>מציג סטטיסטיקות כלליות על המערכת:</p>
+    <ul>
+        <li>מספר לקוחות</li>
+        <li>מספר לידים</li>
+        <li>אחוז המרה ממוצע</li>
+    </ul>
+    
+    <h3>ניהול לקוחות</h3>
+    
+    <p>מאפשר לך לנהל את הלקוחות במערכת:</p>
+    <ul>
+        <li>יצירת לקוחות חדשים</li>
+        <li>עריכת לקוחות קיימים</li>
+        <li>מחיקת לקוחות</li>
+    </ul>
+    
+    <h3>ניהול לידים</h3>
+    
+    <p>מאפשר לך לצפות בלידים שנאספו מהבוט:</p>
+    <ul>
+        <li>צפייה בפרטי הלידים</li>
+        <li>סינון לידים לפי לקוח, תאריך ותסריט שיחה</li>
+        <li>ייצוא לידים לקובץ CSV</li>
+    </ul>
+    
+    <h3>ניהול תסריטי שיחה</h3>
+    
+    <p>מאפשר לך לנהל את תסריטי השיחה של הבוט:</p>
+    <ul>
+        <li>יצירת תסריטים חדשים</li>
+        <li>עריכת תסריטים קיימים</li>
+        <li>מחיקת תסריטים</li>
+    </ul>
+    
+    <h3>הגדרות</h3>
+    
+    <p>מאפשר לך לנהל את הגדרות המערכת:</p>
+    <ul>
+        <li>הגדרות אימייל</li>
+        <li>הגדרות כלליות</li>
+    </ul>
+    
+    <h2 id="troubleshooting">9. פתרון בעיות נפוצות</h2>
+    
+    <h3>הבוט לא מופיע באתר</h3>
+    
+    <ol>
+        <li>ודא שהטמעת את הקוד הנכון באתר</li>
+        <li>ודא שמזהה הלקוח נכון</li>
+        <li>בדוק את קונסולת הפיתוח של הדפדפן לאיתור שגיאות</li>
+        <li>ודא שאין התנגשות עם סקריפטים אחרים באתר</li>
+    </ol>
+    
+    <h3>לא מתקבלות התראות אימייל</h3>
+    
+    <ol>
+        <li>ודא שהגדרת את פרטי האימייל הנכונים בהגדרות</li>
+        <li>בדוק את תיקיית הספאם באימייל</li>
+        <li>ודא שהאימייל שהגדרת מאפשר שליחת אימי
+(Content truncated due to size limit. Use line ranges to read in chunks)

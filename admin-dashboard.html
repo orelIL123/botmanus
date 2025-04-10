@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מערכת בוט וואטסאפ - לוח בקרה</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            direction: rtl;
+        }
+        .sidebar {
+            background-color: #25D366;
+            color: white;
+            min-height: 100vh;
+        }
+        .sidebar .nav-link {
+            color: white;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 5px;
+        }
+        .sidebar .nav-link:hover, .sidebar .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .sidebar .nav-link i {
+            margin-left: 10px;
+        }
+        .main-content {
+            padding: 20px;
+        }
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #eee;
+            font-weight: bold;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 15px;
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #25D366;
+        }
+        .stat-card .label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .table th {
+            font-weight: 600;
+        }
+        .btn-primary {
+            background-color: #25D366;
+            border-color: #25D366;
+        }
+        .btn-primary:hover {
+            background-color: #128C7E;
+            border-color: #128C7E;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="login-page" class="container">
+        <div class="login-container card">
+            <div class="card-body p-4">
+                <h2 class="text-center mb-4">התחברות למערכת</h2>
+                <form id="login-form">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">אימייל</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">סיסמה</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">התחבר</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboard-page" class="container-fluid d-none">
+        <div class="row">
+            <div class="col-md-2 sidebar p-0">
+                <div class="d-flex flex-column p-3">
+                    <h4 class="mb-4 text-center">בוט וואטסאפ</h4>
+                    <ul class="nav nav-pills flex-column">
+                        <li class="nav-item">
+                            <a href="#overview" class="nav-link active" data-page="overview">
+                                <i class="bi bi-speedometer2"></i>
+                                סקירה כללית
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#clients" class="nav-link" data-page="clients">
+                                <i class="bi bi-people"></i>
+                                לקוחות
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#leads" class="nav-link" data-page="leads">
+                                <i class="bi bi-person-lines-fill"></i>
+                                לידים
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#flows" class="nav-link" data-page="flows">
+                                <i class="bi bi-diagram-3"></i>
+                                תסריטי שיחה
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#settings" class="nav-link" data-page="settings">
+                                <i class="bi bi-gear"></i>
+                                הגדרות
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="mt-auto">
+                        <a href="#" id="logout-btn" class="nav-link text-white">
+                            <i class="bi bi-box-arrow-right"></i>
+                            התנתק
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-10 main-content">
+                <!-- Overview Page -->
+                <div id="overview-page" class="page-content">
+                    <h2 class="mb-4">סקירה כללית</h2>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card stat-card">
+                                <div class="number" id="total-clients">0</div>
+                                <div class="label">לקוחות</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card stat-card">
+                                <div class="number" id="total-leads">0</div>
+                                <div class="label">לידים</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card stat-card">
+                                <div class="number" id="conversion-rate">0%</div>
+                                <div class="label">אחוז המרה</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            לקוחות פעילים
+                        </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>שם העסק</th>
+                                        <th>לידים</th>
+                                        <th>אחוז המרה</th>
+                                        <th>פעולות</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clients-table">
+                                    <!-- Client data will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Clients Page -->
+                <div id="clients-page" class="page-content d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>ניהול לקוחות</h2>
+                        <button class="btn btn-primary" id="add-client-btn">
+                            <i class="bi bi-plus"></i> הוסף לקוח חדש
+                        </button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>שם העסק</th>
+                                        <th>מספר וואטסאפ</th>
+                                        <th>אימייל</th>
+                                        <th>תאריך הצטרפות</th>
+                                        <th>פעולות</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clients-full-table">
+                                    <!-- Client data will be loaded here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Leads Page -->
+                <div id="leads-page" class="page-content d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>ניהול לידים</h2>
+                        <div>
+                            <select id="client-filter" class="form-select d-inline-block me-2" style="width: auto;">
+                                <option value="">כל הלקוחות</option>
+                                <!-- Client options will be loaded here -->
+                            </select>
+                            <button class="btn btn-primary" id="export-leads-btn">
+                                <i class="bi bi-download"></i> ייצא לקובץ CSV
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>שם</th>
+                                        <th>טלפון</th>
+                                        <th>לקוח</th>
+                                        <th>תסריט שיחה</th>
+                                        <th>תאריך</th>
+                                        <th>פעולות</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="leads-table">
+                                    <!-- Lead data will be loaded here -->
+                                </tbody>
+                            </table>
+                            <div class="d-flex justify-content-center mt-3">
+                                <button id="load-more-leads" class="btn btn-outline-primary">טען עוד</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Flows Page -->
+                <div id="flows-page" class="page-content d-none">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>תסריטי שיחה</h2>
+                        <div>
+                            <select id="client-flow-filter" class="form-select d-inline-block me-2" style="width: auto;">
+                                <option value="">בחר לקוח</option>
+                                <!-- Client options will be loaded here -->
+                            </select>
+                            <button class="btn btn-primary" id="add-flow-btn" disabled>
+                                <i class="bi bi-plus"></i> הוסף תסריט חדש
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="flow-list">
+                                <p class="text-center">בחר לקוח כדי לראות את תסריטי השיחה שלו</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Settings Page -->
+                <div id="settings-page" class="page-content d-none">
+                    <h2 class="mb-4">הגדרות מערכת</h2>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            הגדרות אימייל
+                        </div>
+                        <div class="card-body">
+                            <form id="email-settings-form">
+                                <div class="mb-3">
+                                    <label for="email-address" class="form-label">כתובת אימייל לשליחת התראות</label>
+                                    <input type="email" class="form-control" id="email-address" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email-password" class="form-label">סיסמת אימייל</label>
+                                    <input type="password" class="form-control" id="email-password" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email-service" class="form-label">שירות אימייל</label>
+                                    <select class="form-select" id="email-service" required>
+                                        <option value="gmail">Gmail</option>
+                                        <option value="outlook">Outlook</option>
+                                        <option value="yahoo">Yahoo</option>
+                                        <option value="other">אחר</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-primary">שמור הגדרות</button>
+                                <button type="button" id="test-email-btn" class="btn btn-outline-primary ms-2">שלח אימייל בדיקה</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-functions-compat.js"></script>
+    
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "whatsapp-bot-automation.firebaseapp.com",
+            projectId: "whatsapp-bot-automation",
+            storageBucket: "whatsapp-bot-automation.appspot.com",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        
+        // Authentication state observer
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                // User is signed in
+                document.getElementById('login-page').classList.add('d-none');
+                document.getElementById('dashboard-page').classList.remove('d-none');
+                loadDashboardData();
+            } else {
+                // User is signed out
+                document.getElementById('login-page').classList.remove('d-none');
+                document.getElementById('dashboard-page').classList.add('d-none');
+            }
+        });
+        
+        // Login form submission
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').v
+(Content truncated due to size limit. Use line ranges to read in chunks)

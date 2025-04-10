@@ -1,0 +1,111 @@
+{
+  "flowId": "new_collection",
+  "name": "מידע על הקולקציה החדשה",
+  "steps": [
+    {
+      "id": "collect_info",
+      "type": "collect_info",
+      "message": "נשמח לספר לך על הקולקציה החדשה שלנו! כדי שנוכל לעדכן אותך בפריטים שמתאימים בדיוק לך, אנא ספר/י לנו קצת על עצמך:",
+      "fields": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "שם מלא",
+          "required": true
+        },
+        {
+          "id": "phone",
+          "type": "phone",
+          "label": "מספר טלפון",
+          "required": true
+        }
+      ],
+      "next": "collection_preferences"
+    },
+    {
+      "id": "collection_preferences",
+      "type": "options",
+      "message": "תודה {{name}}! באיזה סוג פריטים מהקולקציה החדשה את/ה מתעניין/ת?",
+      "options": [
+        {
+          "id": "mens",
+          "text": "בגדי גברים",
+          "next": "mens_info"
+        },
+        {
+          "id": "womens",
+          "text": "בגדי נשים",
+          "next": "womens_info"
+        },
+        {
+          "id": "kids",
+          "text": "בגדי ילדים",
+          "next": "kids_info"
+        },
+        {
+          "id": "all",
+          "text": "כל הקולקציה",
+          "next": "all_info"
+        }
+      ]
+    },
+    {
+      "id": "mens_info",
+      "type": "message",
+      "message": "הקולקציה החדשה לגברים שלנו כוללת חולצות מעוצבות, מכנסיים אלגנטיים וג'ינסים באיכות גבוהה. כל הפריטים זמינים במגוון מידות ובמחירים מיוחדים לרגל ההשקה!",
+      "next": "schedule_visit"
+    },
+    {
+      "id": "womens_info",
+      "type": "message",
+      "message": "הקולקציה החדשה לנשים שלנו כוללת שמלות מעוצבות, חולצות אופנתיות, מכנסיים וחצאיות במגוון סגנונות. כל הפריטים זמינים במגוון מידות ובמחירים מיוחדים לרגל ההשקה!",
+      "next": "schedule_visit"
+    },
+    {
+      "id": "kids_info",
+      "type": "message",
+      "message": "הקולקציה החדשה לילדים שלנו כוללת בגדים נוחים, צבעוניים ועמידים במיוחד. יש לנו מגוון פריטים לכל הגילאים, מתינוקות ועד נוער, במחירים מיוחדים לרגל ההשקה!",
+      "next": "schedule_visit"
+    },
+    {
+      "id": "all_info",
+      "type": "message",
+      "message": "הקולקציה החדשה שלנו כוללת מגוון עשיר של פריטים לכל המשפחה - בגדי גברים, נשים וילדים באיכות גבוהה ובמחירים מיוחדים לרגל ההשקה! יש לנו סגנונות מגוונים שמתאימים לכל אירוע ולכל עונה.",
+      "next": "schedule_visit"
+    },
+    {
+      "id": "schedule_visit",
+      "type": "options",
+      "message": "האם תרצה/י לקבל התראה כשהפריטים החדשים מגיעים לחנות?",
+      "options": [
+        {
+          "id": "yes_notification",
+          "text": "כן, אשמח לקבל עדכון",
+          "next": "notification_confirmation"
+        },
+        {
+          "id": "no_notification",
+          "text": "לא תודה",
+          "next": "thank_you"
+        }
+      ]
+    },
+    {
+      "id": "notification_confirmation",
+      "type": "message",
+      "message": "מצוין! רשמנו את פרטיך ונעדכן אותך ברגע שהפריטים החדשים יגיעו לחנות. בינתיים, אתה מוזמן לבקר אותנו בחנות ולראות את הקולקציה הנוכחית.",
+      "next": "thank_you"
+    },
+    {
+      "id": "thank_you",
+      "type": "message",
+      "message": "תודה שהתעניינת בקולקציה החדשה שלנו! אם יש לך שאלות נוספות, אל תהסס/י לפנות אלינו. נשמח לראותך בחנות!",
+      "next": "end"
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "message": "שיחה זו הסתיימה. תודה ולהתראות!"
+    }
+  ]
+}

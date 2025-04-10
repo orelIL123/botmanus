@@ -1,0 +1,174 @@
+{
+  "flowId": "store_hours",
+  "name": "שעות פתיחה וכתובת",
+  "steps": [
+    {
+      "id": "collect_info",
+      "type": "collect_info",
+      "message": "נשמח לספק לך מידע על שעות הפתיחה והכתובת שלנו! כדי שנוכל לעדכן אותך בעתיד על שינויים או אירועים מיוחדים, אנא ספר/י לנו קצת על עצמך:",
+      "fields": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "שם מלא",
+          "required": true
+        },
+        {
+          "id": "phone",
+          "type": "phone",
+          "label": "מספר טלפון",
+          "required": true
+        }
+      ],
+      "next": "location_options"
+    },
+    {
+      "id": "location_options",
+      "type": "options",
+      "message": "תודה {{name}}! איזה מידע ספציפי אתה מחפש?",
+      "options": [
+        {
+          "id": "all_stores",
+          "text": "כל הסניפים",
+          "next": "all_stores_info"
+        },
+        {
+          "id": "tel_aviv",
+          "text": "סניף תל אביב",
+          "next": "tel_aviv_info"
+        },
+        {
+          "id": "jerusalem",
+          "text": "סניף ירושלים",
+          "next": "jerusalem_info"
+        },
+        {
+          "id": "haifa",
+          "text": "סניף חיפה",
+          "next": "haifa_info"
+        }
+      ]
+    },
+    {
+      "id": "all_stores_info",
+      "type": "message",
+      "message": "הנה רשימת כל הסניפים שלנו ושעות הפתיחה:\n\n• סניף תל אביב: רחוב דיזנגוף 100, תל אביב\n  א'-ה': 09:30-21:00, ו': 09:00-15:00, שבת: סגור\n\n• סניף ירושלים: קניון מלחה, ירושלים\n  א'-ה': 10:00-22:00, ו': 09:00-14:00, שבת: סגור\n\n• סניף חיפה: גרנד קניון, חיפה\n  א'-ה': 10:00-21:30, ו': 09:00-15:00, שבת: סגור",
+      "next": "directions_question"
+    },
+    {
+      "id": "tel_aviv_info",
+      "type": "message",
+      "message": "סניף תל אביב:\n\nכתובת: רחוב דיזנגוף 100, תל אביב\n\nשעות פתיחה:\nימים א'-ה': 09:30-21:00\nיום ו': 09:00-15:00\nשבת: סגור\n\nטלפון: 03-1234567\n\nחניה: חניון ציבורי בתשלום בסמוך לחנות (חניון דיזנגוף סנטר)",
+      "next": "directions_question"
+    },
+    {
+      "id": "jerusalem_info",
+      "type": "message",
+      "message": "סניף ירושלים:\n\nכתובת: קניון מלחה, קומה 2, ירושלים\n\nשעות פתיחה:\nימים א'-ה': 10:00-22:00\nיום ו': 09:00-14:00\nשבת: סגור\n\nטלפון: 02-6543210\n\nחניה: חניון הקניון ללא תשלום",
+      "next": "directions_question"
+    },
+    {
+      "id": "haifa_info",
+      "type": "message",
+      "message": "סניף חיפה:\n\nכתובת: גרנד קניון, קומה 1, חיפה\n\nשעות פתיחה:\nימים א'-ה': 10:00-21:30\nיום ו': 09:00-15:00\nשבת: סגור\n\nטלפון: 04-8765432\n\nחניה: חניון הקניון ללא תשלום בשעתיים הראשונות",
+      "next": "directions_question"
+    },
+    {
+      "id": "directions_question",
+      "type": "options",
+      "message": "האם תרצה/י לקבל הוראות הגעה?",
+      "options": [
+        {
+          "id": "yes_directions",
+          "text": "כן, אשמח לקבל הוראות",
+          "next": "request_specific_store"
+        },
+        {
+          "id": "no_directions",
+          "text": "לא תודה",
+          "next": "special_hours"
+        }
+      ]
+    },
+    {
+      "id": "request_specific_store",
+      "type": "options",
+      "message": "לאיזה סניף תרצה/י לקבל הוראות הגעה?",
+      "options": [
+        {
+          "id": "directions_tel_aviv",
+          "text": "סניף תל אביב",
+          "next": "directions_tel_aviv_info"
+        },
+        {
+          "id": "directions_jerusalem",
+          "text": "סניף ירושלים",
+          "next": "directions_jerusalem_info"
+        },
+        {
+          "id": "directions_haifa",
+          "text": "סניף חיפה",
+          "next": "directions_haifa_info"
+        }
+      ]
+    },
+    {
+      "id": "directions_tel_aviv_info",
+      "type": "message",
+      "message": "הוראות הגעה לסניף תל אביב:\n\nבתחבורה ציבורית:\n• קווי אוטובוס 5, 39, 72 עוצרים ברחוב דיזנגוף\n• תחנת רכבת קלה: תחנת דיזנגוף (במרחק הליכה של 5 דקות)\n\nברכב פרטי:\n• נווט ל'דיזנגוף 100, תל אביב'\n• חניה בחניון דיזנגוף סנטר (בתשלום)",
+      "next": "special_hours"
+    },
+    {
+      "id": "directions_jerusalem_info",
+      "type": "message",
+      "message": "הוראות הגעה לסניף ירושלים:\n\nבתחבורה ציבורית:\n• קווי אוטובוס 6, 31, 32 עוצרים בתחנה הסמוכה לקניון מלחה\n• תחנת רכבת: תחנת מלחה (במרחק הליכה של 10 דקות)\n\nברכב פרטי:\n• נווט ל'קניון מלחה, ירושלים'\n• חניה בחניון הקניון (ללא תשלום)",
+      "next": "special_hours"
+    },
+    {
+      "id": "directions_haifa_info",
+      "type": "message",
+      "message": "הוראות הגעה לסניף חיפה:\n\nבתחבורה ציבורית:\n• קווי אוטובוס 3, 15, 37 עוצרים בתחנה הסמוכה לגרנד קניון\n• מטרונית: תחנת גרנד קניון\n\nברכב פרטי:\n• נווט ל'גרנד קניון, חיפה'\n• חניה בחניון הקניון (ללא תשלום בשעתיים הראשונות)",
+      "next": "special_hours"
+    },
+    {
+      "id": "special_hours",
+      "type": "message",
+      "message": "שים/י לב: בחגים ובמועדים מיוחדים עשויים להיות שינויים בשעות הפתיחה. מומלץ לבדוק באתר או בטלפון לפני ההגעה.",
+      "next": "notification_question"
+    },
+    {
+      "id": "notification_question",
+      "type": "options",
+      "message": "האם תרצה/י לקבל עדכונים על שינויים בשעות הפתיחה או אירועים מיוחדים בחנויות?",
+      "options": [
+        {
+          "id": "yes_notification",
+          "text": "כן, אשמח לקבל עדכונים",
+          "next": "notification_confirmation"
+        },
+        {
+          "id": "no_notification",
+          "text": "לא תודה",
+          "next": "thank_you"
+        }
+      ]
+    },
+    {
+      "id": "notification_confirmation",
+      "type": "message",
+      "message": "מצוין! רשמנו את פרטיך ונעדכן אותך על שינויים בשעות הפתיחה ואירועים מיוחדים בחנויות שלנו.",
+      "next": "thank_you"
+    },
+    {
+      "id": "thank_you",
+      "type": "message",
+      "message": "תודה שפנית אלינו לבירור שעות הפתיחה והכתובת! אם יש לך שאלות נוספות, אל תהסס/י לפנות אלינו. נשמח לראותך בחנות!",
+      "next": "end"
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "message": "שיחה זו הסתיימה. תודה ולהתראות!"
+    }
+  ]
+}

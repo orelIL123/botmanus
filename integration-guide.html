@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריך שילוב בוט וואטסאפ</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            direction: rtl;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background-color: #25D366;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h1 {
+            margin: 0;
+        }
+        .content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-top: 20px;
+        }
+        .code-block {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace;
+            margin: 15px 0;
+            direction: ltr;
+            text-align: left;
+        }
+        .note {
+            background-color: #e8f4fd;
+            border-right: 4px solid #2196F3;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .platform {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 14px;
+            padding: 20px;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .tab {
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border-radius: 5px 5px 0 0;
+            margin-left: 5px;
+        }
+        .tab.active {
+            background-color: #25D366;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 0 0 5px 5px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>מדריך שילוב בוט וואטסאפ באתר</h1>
+    </header>
+    
+    <div class="container">
+        <div class="content">
+            <h2>מדריך התקנה</h2>
+            <p>מדריך זה יסביר כיצד לשלב את בוט הוואטסאפ באתר האינטרנט שלך. הבוט מאפשר ללקוחות ליצור קשר איתך דרך וואטסאפ בלחיצת כפתור.</p>
+            
+            <h3>שיטת התקנה בסיסית</h3>
+            <p>הוסף את הקוד הבא לדף ה-HTML שלך, ממש לפני תג הסגירה של ה-body:</p>
+            
+            <div class="code-block">
+&lt;script src="https://us-central1-whatsapp-bot-automation.cloudfunctions.net/app/js/whatsapp-bot-widget.js" 
+        data-whatsapp-bot-client="YOUR_CLIENT_ID" 
+        data-whatsapp-bot-api="https://us-central1-whatsapp-bot-automation.cloudfunctions.net"&gt;&lt;/script&gt;
+            </div>
+            
+            <p>החלף את <code>YOUR_CLIENT_ID</code> במזהה הלקוח שקיבלת מאיתנו.</p>
+            
+            <div class="note">
+                <strong>שים לב:</strong> מזהה הלקוח הוא מחרוזת ייחודית שמזהה את העסק שלך במערכת. אם אינך יודע מהו המזהה שלך, צור קשר עם מנהל המערכת.
+            </div>
+            
+            <h3>התאמה אישית</h3>
+            <p>ניתן להתאים את מראה הכפתור ואת התנהגותו באמצעות קוד JavaScript נוסף:</p>
+            
+            <div class="code-block">
+&lt;script&gt;
+    document.addEventListener('DOMContentLoaded', function() {
+        WhatsAppBotWidget.init({
+            clientId: 'YOUR_CLIENT_ID',
+            apiUrl: 'https://us-central1-whatsapp-bot-automation.cloudfunctions.net',
+            buttonPosition: 'right', // 'right' או 'left'
+            buttonColor: '#25D366', // צבע הכפתור
+            buttonSize: '60px', // גודל הכפתור
+            buttonRadius: '50%', // עיגול הכפתור
+            buttonMargin: '20px', // מרחק מהקצה
+            buttonText: 'צור קשר', // טקסט שיוצג ליד הכפתור
+            showButtonText: true // האם להציג טקסט ליד הכפתור
+        });
+    });
+&lt;/script&gt;
+            </div>
+            
+            <h3>שילוב בפלטפורמות נפוצות</h3>
+            
+            <div class="tabs">
+                <div class="tab active" onclick="showTab('wordpress')">WordPress</div>
+                <div class="tab" onclick="showTab('wix')">Wix</div>
+                <div class="tab" onclick="showTab('shopify')">Shopify</div>
+            </div>
+            
+            <div id="wordpress" class="tab-content active">
+                <h4>שילוב ב-WordPress</h4>
+                <p>יש מספר דרכים לשלב את הבוט באתר WordPress:</p>
+                
+                <h5>שיטה 1: שימוש בתוסף Header and Footer Scripts</h5>
+                <ol>
+                    <li>התקן את התוסף "Header and Footer Scripts"</li>
+                    <li>לך להגדרות התוסף</li>
+                    <li>הוסף את קוד ההטמעה לחלק ה-Footer</li>
+                    <li>שמור את השינויים</li>
+                </ol>
+                
+                <h5>שיטה 2: עריכת קובץ התבנית</h5>
+                <ol>
+                    <li>לך ל-Appearance > Theme Editor</li>
+                    <li>ערוך את קובץ footer.php</li>
+                    <li>הוסף את קוד ההטמעה לפני תג הסגירה של ה-body</li>
+                    <li>שמור את השינויים</li>
+                </ol>
+            </div>
+            
+            <div id="wix" class="tab-content">
+                <h4>שילוב ב-Wix</h4>
+                <ol>
+                    <li>היכנס לעורך האתר של Wix</li>
+                    <li>לחץ על "הוסף" בתפריט הצד</li>
+                    <li>בחר "HTML מותאם אישית"</li>
+                    <li>הוסף את קוד ההטמעה</li>
+                    <li>לחץ על "החל"</li>
+                    <li>מקם את האלמנט בתחתית הדף (הוא יהיה בלתי נראה, אך הכפתור יופיע)</li>
+                    <li>הגדר את האלמנט להופיע בכל הדפים</li>
+                </ol>
+            </div>
+            
+            <div id="shopify" class="tab-content">
+                <h4>שילוב ב-Shopify</h4>
+                <ol>
+                    <li>היכנס ללוח הבקרה של Shopify</li>
+                    <li>לך ל-Online Store > Themes</li>
+                    <li>לחץ על "Actions" ובחר "Edit code"</li>
+                    <li>חפש את הקובץ theme.liquid</li>
+                    <li>הוסף את קוד ההטמעה לפני תג הסגירה של ה-body</li>
+                    <li>לחץ על "Save"</li>
+                </ol>
+            </div>
+            
+            <h3>בדיקת ההתקנה</h3>
+            <p>לאחר שהוספת את הקוד לאתר שלך:</p>
+            <ol>
+                <li>רענן את האתר</li>
+                <li>ודא שכפתור הוואטסאפ מופיע בפינה הימנית התחתונה של האתר</li>
+                <li>לחץ על הכפתור כדי לבדוק שהוא פותח שיחת וואטסאפ עם המספר הנכון</li>
+            </ol>
+            
+            <div class="note">
+                <strong>פתרון בעיות:</strong> אם הכפתור אינו מופיע, בדוק את קונסולת הפיתוח של הדפדפן לאיתור שגיאות אפשריות. ודא שהקוד הוטמע כראוי ושמזהה הלקוח נכון.
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>מערכת בוט וואטסאפ &copy; 2025 | כל הזכויות שמורות</p>
+    </footer>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(function(content) {
+                content.classList.remove('active');
+            });
+            
+            // Deactivate all tabs
+            document.querySelectorAll('.tab').forEach(function(tab) {
+                tab.classList.remove('active');
+            });
+            
+            // Activate selected tab and content
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector('.tab:nth-child(' + (Array.from(document.querySelectorAll('.tab')).findIndex(tab => tab.textContent.toLowerCase().includes(tabId)) + 1) + ')').classList.add('active');
+        }
+    </script>
+</body>
+</html>

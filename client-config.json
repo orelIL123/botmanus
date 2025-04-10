@@ -1,0 +1,29 @@
+{
+  "clientId": "clothing_store_example",
+  "businessName": "חנות הבגדים שלי",
+  "whatsappNumber": "972501234567",
+  "email": "store@example.com",
+  "welcomeMessage": "שלום! אני הבוט החכם של חנות הבגדים שלי. איך אוכל לעזור לך היום?",
+  "initialOptions": [
+    {
+      "id": "new_collection",
+      "text": "מידע על הקולקציה החדשה"
+    },
+    {
+      "id": "sale",
+      "text": "מבצעים והנחות"
+    },
+    {
+      "id": "sizes",
+      "text": "בירור מידות ומלאי"
+    },
+    {
+      "id": "return",
+      "text": "מדיניות החזרות והחלפות"
+    },
+    {
+      "id": "store_hours",
+      "text": "שעות פתיחה וכתובת"
+    }
+  ]
+}

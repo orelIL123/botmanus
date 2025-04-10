@@ -1,0 +1,100 @@
+{
+  "flowId": "sale",
+  "name": "מבצעים והנחות",
+  "steps": [
+    {
+      "id": "collect_info",
+      "type": "collect_info",
+      "message": "נשמח לעדכן אותך על המבצעים וההנחות שלנו! כדי שנוכל לשלוח לך עדכונים על מבצעים שמתאימים בדיוק לך, אנא ספר/י לנו קצת על עצמך:",
+      "fields": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "שם מלא",
+          "required": true
+        },
+        {
+          "id": "phone",
+          "type": "phone",
+          "label": "מספר טלפון",
+          "required": true
+        }
+      ],
+      "next": "sale_preferences"
+    },
+    {
+      "id": "sale_preferences",
+      "type": "options",
+      "message": "תודה {{name}}! באיזה סוג מבצעים את/ה מתעניין/ת?",
+      "options": [
+        {
+          "id": "current_sales",
+          "text": "מבצעים נוכחיים",
+          "next": "current_sales_info"
+        },
+        {
+          "id": "seasonal_sales",
+          "text": "מבצעי סוף עונה",
+          "next": "seasonal_sales_info"
+        },
+        {
+          "id": "vip_discounts",
+          "text": "הנחות למועדון לקוחות",
+          "next": "vip_discounts_info"
+        }
+      ]
+    },
+    {
+      "id": "current_sales_info",
+      "type": "message",
+      "message": "המבצעים הנוכחיים שלנו כוללים: קנה 1 קבל 1 חינם על כל החולצות, 30% הנחה על מכנסיים נבחרים, ו-50% הנחה על פריט שני בקניית נעליים. המבצעים בתוקף עד סוף החודש!",
+      "next": "join_vip"
+    },
+    {
+      "id": "seasonal_sales_info",
+      "type": "message",
+      "message": "מבצעי סוף העונה שלנו יתחילו בשבוע הבא! תוכל/י ליהנות מהנחות של עד 70% על פריטים נבחרים מקולקציית החורף, כולל מעילים, סוודרים, ומגפיים.",
+      "next": "join_vip"
+    },
+    {
+      "id": "vip_discounts_info",
+      "type": "message",
+      "message": "חברי מועדון הלקוחות שלנו נהנים מ-10% הנחה קבועה על כל קנייה, מבצעים בלעדיים, הנחות יום הולדת, ומכירות מוקדמות לפני כולם!",
+      "next": "join_vip"
+    },
+    {
+      "id": "join_vip",
+      "type": "options",
+      "message": "האם תרצה/י להצטרף למועדון הלקוחות שלנו ולקבל עדכונים על מבצעים חדשים?",
+      "options": [
+        {
+          "id": "yes_vip",
+          "text": "כן, אשמח להצטרף",
+          "next": "vip_confirmation"
+        },
+        {
+          "id": "no_vip",
+          "text": "לא תודה",
+          "next": "thank_you"
+        }
+      ]
+    },
+    {
+      "id": "vip_confirmation",
+      "type": "message",
+      "message": "מצוין! רשמנו את פרטיך למועדון הלקוחות שלנו. בקרוב תקבל/י הודעה עם פרטי ההצטרפות וקוד הטבה לקנייה הראשונה!",
+      "next": "thank_you"
+    },
+    {
+      "id": "thank_you",
+      "type": "message",
+      "message": "תודה שהתעניינת במבצעים וההנחות שלנו! אם יש לך שאלות נוספות, אל תהסס/י לפנות אלינו. נשמח לראותך בחנות!",
+      "next": "end"
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "message": "שיחה זו הסתיימה. תודה ולהתראות!"
+    }
+  ]
+}

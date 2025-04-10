@@ -1,0 +1,278 @@
+{
+  "flowId": "sizes",
+  "name": "בירור מידות ומלאי",
+  "steps": [
+    {
+      "id": "collect_info",
+      "type": "collect_info",
+      "message": "נשמח לעזור לך בבירור מידות ומלאי! כדי שנוכל לתת לך מידע מדויק, אנא ספר/י לנו קצת על עצמך:",
+      "fields": [
+        {
+          "id": "name",
+          "type": "text",
+          "label": "שם מלא",
+          "required": true
+        },
+        {
+          "id": "phone",
+          "type": "phone",
+          "label": "מספר טלפון",
+          "required": true
+        }
+      ],
+      "next": "size_category"
+    },
+    {
+      "id": "size_category",
+      "type": "options",
+      "message": "תודה {{name}}! לגבי איזה סוג פריטים תרצה/י לברר מידות ומלאי?",
+      "options": [
+        {
+          "id": "mens_sizes",
+          "text": "בגדי גברים",
+          "next": "mens_size_options"
+        },
+        {
+          "id": "womens_sizes",
+          "text": "בגדי נשים",
+          "next": "womens_size_options"
+        },
+        {
+          "id": "kids_sizes",
+          "text": "בגדי ילדים",
+          "next": "kids_size_options"
+        },
+        {
+          "id": "shoes",
+          "text": "נעליים",
+          "next": "shoes_size_options"
+        }
+      ]
+    },
+    {
+      "id": "mens_size_options",
+      "type": "options",
+      "message": "איזה פריט ספציפי מעניין אותך?",
+      "options": [
+        {
+          "id": "mens_shirts",
+          "text": "חולצות",
+          "next": "mens_shirts_info"
+        },
+        {
+          "id": "mens_pants",
+          "text": "מכנסיים",
+          "next": "mens_pants_info"
+        },
+        {
+          "id": "mens_jackets",
+          "text": "ז'קטים ומעילים",
+          "next": "mens_jackets_info"
+        }
+      ]
+    },
+    {
+      "id": "womens_size_options",
+      "type": "options",
+      "message": "איזה פריט ספציפי מעניין אותך?",
+      "options": [
+        {
+          "id": "womens_dresses",
+          "text": "שמלות",
+          "next": "womens_dresses_info"
+        },
+        {
+          "id": "womens_tops",
+          "text": "חולצות וטופים",
+          "next": "womens_tops_info"
+        },
+        {
+          "id": "womens_pants",
+          "text": "מכנסיים וחצאיות",
+          "next": "womens_pants_info"
+        }
+      ]
+    },
+    {
+      "id": "kids_size_options",
+      "type": "options",
+      "message": "לאיזה גיל את/ה מחפש/ת בגדים?",
+      "options": [
+        {
+          "id": "baby",
+          "text": "תינוקות (0-2)",
+          "next": "baby_info"
+        },
+        {
+          "id": "toddler",
+          "text": "פעוטות (2-5)",
+          "next": "toddler_info"
+        },
+        {
+          "id": "kids",
+          "text": "ילדים (6-12)",
+          "next": "kids_info"
+        },
+        {
+          "id": "teens",
+          "text": "נוער (13-16)",
+          "next": "teens_info"
+        }
+      ]
+    },
+    {
+      "id": "shoes_size_options",
+      "type": "options",
+      "message": "לאיזה קטגוריה את/ה מחפש/ת נעליים?",
+      "options": [
+        {
+          "id": "mens_shoes",
+          "text": "נעלי גברים",
+          "next": "mens_shoes_info"
+        },
+        {
+          "id": "womens_shoes",
+          "text": "נעלי נשים",
+          "next": "womens_shoes_info"
+        },
+        {
+          "id": "kids_shoes",
+          "text": "נעלי ילדים",
+          "next": "kids_shoes_info"
+        }
+      ]
+    },
+    {
+      "id": "mens_shirts_info",
+      "type": "message",
+      "message": "חולצות הגברים שלנו זמינות במידות S, M, L, XL, XXL. לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי דגם ספציפי, אנא פנה לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "mens_pants_info",
+      "type": "message",
+      "message": "מכנסי הגברים שלנו זמינים במידות 28-42 (מספרי מותן). לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי דגם ספציפי, אנא פנה לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "mens_jackets_info",
+      "type": "message",
+      "message": "הז'קטים והמעילים לגברים זמינים במידות S, M, L, XL, XXL. לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי דגם ספציפי, אנא פנה לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "womens_dresses_info",
+      "type": "message",
+      "message": "השמלות שלנו זמינות במידות 34-46 (מידות אירופאיות). לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי דגם ספציפי, אנא פני לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "womens_tops_info",
+      "type": "message",
+      "message": "החולצות והטופים לנשים זמינים במידות XS, S, M, L, XL. לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי דגם ספציפי, אנא פני לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "womens_pants_info",
+      "type": "message",
+      "message": "המכנסיים והחצאיות לנשים זמינים במידות 34-46 (מידות אירופאיות). לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי דגם ספציפי, אנא פני לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "baby_info",
+      "type": "message",
+      "message": "בגדי התינוקות שלנו זמינים במידות 0-3M, 3-6M, 6-9M, 9-12M, 12-18M, 18-24M. לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי פריט ספציפי, אנא פנה/י לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "toddler_info",
+      "type": "message",
+      "message": "בגדי הפעוטות שלנו זמינים במידות 2-3, 3-4, 4-5 שנים. לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי פריט ספציפי, אנא פנה/י לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "kids_info",
+      "type": "message",
+      "message": "בגדי הילדים שלנו זמינים במידות 6, 7, 8, 9, 10, 11, 12 שנים. לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי פריט ספציפי, אנא פנה/י לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "teens_info",
+      "type": "message",
+      "message": "בגדי הנוער שלנו זמינים במידות 13-14, 15-16 שנים, וכן במידות XS, S, M למתבגרים. לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי פריט ספציפי, אנא פנה/י לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "mens_shoes_info",
+      "type": "message",
+      "message": "נעלי הגברים שלנו זמינות במידות 40-46 (מידות אירופאיות). לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי דגם ספציפי, אנא פנה לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "womens_shoes_info",
+      "type": "message",
+      "message": "נעלי הנשים שלנו זמינות במידות 35-42 (מידות אירופאיות). לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי דגם ספציפי, אנא פני לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "kids_shoes_info",
+      "type": "message",
+      "message": "נעלי הילדים שלנו זמינות במידות 24-39 (מידות אירופאיות). לרוב הדגמים יש כרגע מלאי בכל המידות. אם יש לך שאלה לגבי דגם ספציפי, אנא פנה/י לחנות בטלפון 03-1234567.",
+      "next": "check_specific_item"
+    },
+    {
+      "id": "check_specific_item",
+      "type": "options",
+      "message": "האם יש פריט ספציפי שתרצה/י לבדוק את זמינותו?",
+      "options": [
+        {
+          "id": "yes_specific",
+          "text": "כן, יש לי פריט ספציפי",
+          "next": "request_item_details"
+        },
+        {
+          "id": "no_specific",
+          "text": "לא, קיבלתי את המידע שחיפשתי",
+          "next": "thank_you"
+        }
+      ]
+    },
+    {
+      "id": "request_item_details",
+      "type": "collect_info",
+      "message": "אנא ספר/י לנו על הפריט הספציפי שאת/ה מחפש/ת:",
+      "fields": [
+        {
+          "id": "item_description",
+          "type": "text",
+          "label": "תיאור הפריט (למשל: ג'ינס כחול, חולצה לבנה וכו')",
+          "required": true
+        },
+        {
+          "id": "size",
+          "type": "text",
+          "label": "מידה מבוקשת",
+          "required": true
+        }
+      ],
+      "next": "specific_item_response"
+    },
+    {
+      "id": "specific_item_response",
+      "type": "message",
+      "message": "תודה על הפרטים! נציג שלנו יבדוק את זמינות הפריט המבוקש ויחזור אליך בהקדם. לחלופין, תוכל/י להתקשר ישירות לחנות בטלפון 03-1234567 לבדיקה מיידית.",
+      "next": "thank_you"
+    },
+    {
+      "id": "thank_you",
+      "type": "message",
+      "message": "תודה שפנית אלינו לבירור מידות ומלאי! אם יש לך שאלות נוספות, אל תהסס/י לפנות אלינו. נשמח לראותך בחנות!",
+      "next": "end"
+    },
+    {
+      "id": "end",
+      "type": "end",
+      "message": "שיחה זו הסתיימה. תודה ולהתראות!"
+    }
+  ]
+}
