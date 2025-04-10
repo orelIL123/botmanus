@@ -1,5 +1,9 @@
-const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+
+// Initialize Firebase Admin FIRST
+admin.initializeApp();
+
+const functions = require('firebase-functions');
 const express = require('express');
 const cors = require('cors');
 const ClientManager = require('./client-manager');
@@ -7,9 +11,6 @@ const ConversationManager = require('./conversation-manager');
 const LeadManager = require('./lead-manager');
 const adminDashboardRoutes = require('./admin-routes');
 const whatsappUtils = require('./whatsapp-utils');
-
-// Initialize Firebase Admin
-admin.initializeApp();
 
 // Initialize Express app
 const app = express();
