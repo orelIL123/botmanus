@@ -150,9 +150,21 @@ class ClientManager {
         throw new Error(`Flow with ID ${flowId} not found for client ${clientId}`);
       }
 
-      return flowDoc.data();
+      const flowData = flowDoc.data();
+      if (!flowData.flowDefinition) {
+        throw new Error(`Flow document ${flowId} for client ${clientId} does not contain a flowDefinition field.`);
+      }
+
+      // Parse the JSON string from the flowDefinition field
+      return JSON.parse(flowData.flowDefinition);
+
     } catch (error) {
       console.error('Error getting flow:', error);
+      // Add more specific error handling for JSON parsing errors if needed
+      if (error instanceof SyntaxError) {
+        console.error('Failed to parse flowDefinition JSON:', error.message);
+        throw new Error(`Failed to parse flow definition for flow ${flowId}. Check the JSON format.`);
+      } 
       throw error;
     }
   }
