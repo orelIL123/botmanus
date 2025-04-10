@@ -258,7 +258,7 @@ app.post('/api/seed-sample-data', async (req, res) => {
 exports.app = functions.https.onRequest(app);
 
 // Scheduled function to clean up old conversations (runs daily)
-exports.cleanupOldConversations = functions.pubsub.schedule('every 24 hours').onRun(async (context) => {
+exports.cleanupOldConversations = functions.scheduler.schedule('every 24 hours').onRun(async (context) => {
   try {
     const db = admin.firestore();
     
