@@ -4,6 +4,7 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 
 const functions = require('firebase-functions');
+const { onSchedule } = require("firebase-functions/v2/scheduler"); // Import v2 scheduler
 const express = require('express');
 const cors = require('cors');
 const ClientManager = require('./client-manager');
@@ -257,8 +258,8 @@ app.post('/api/seed-sample-data', async (req, res) => {
 // Export the Express app as a Firebase Function
 exports.app = functions.https.onRequest(app);
 
-// Scheduled function to clean up old conversations (runs daily)
-exports.cleanupOldConversations = functions.scheduler.schedule('every 24 hours').onRun(async (context) => {
+// Scheduled function to clean up old conversations (runs daily) using v2 syntax
+exports.cleanupOldConversations = onSchedule('every 24 hours', async (event) => {
   try {
     const db = admin.firestore();
     
