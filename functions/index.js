@@ -5,7 +5,7 @@ const cors = require('cors');
 const ClientManager = require('./client-manager');
 const ConversationManager = require('./conversation-manager');
 const LeadManager = require('./lead-manager');
-const adminDashboardRoutes = require('./admin-dashboard');
+const adminDashboardRoutes = require('./admin-routes');
 const whatsappUtils = require('./whatsapp-utils');
 
 // Initialize Firebase Admin

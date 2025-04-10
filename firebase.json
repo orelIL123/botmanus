@@ -19,7 +19,7 @@
   },
   "functions": {
     "source": "functions",
-    "runtime": "nodejs16"
+    "runtime": "nodejs20"
   },
   "firestore": {
     "rules": "firestore.rules",
