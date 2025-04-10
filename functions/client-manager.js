@@ -3,7 +3,13 @@ const admin = require('firebase-admin');
 
 class ClientManager {
   constructor() {
-    this.db = admin.firestore();
+    // Explicitly get Firestore instance from the initialized default app
+    if (!admin.apps.length) {
+        console.error("Firebase Admin SDK not initialized before ClientManager constructor!");
+        // Handle error appropriately, maybe throw?
+    }
+    this.db = admin.app().firestore(); 
+    console.log("ClientManager initialized with Firestore instance."); // Add log
   }
 
   // Create a new client
