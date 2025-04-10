@@ -166,6 +166,7 @@ app.get('/api/whatsapp/link/:clientId', async (req, res) => {
 
 // Website Integration Routes
 app.get('/api/integration/:clientId', async (req, res) => {
+  console.log(`Integration API called for clientId: [${req.params.clientId}]`);
   try {
     const clientId = req.params.clientId;
     const client = await clientManager.getClient(clientId);
@@ -214,7 +215,8 @@ app.get('/api/integration/:clientId', async (req, res) => {
       integrationCode
     });
   } catch (error) {
-    console.error('Error generating integration code:', error);
+    console.error('Error in /api/integration/:clientId:', error.message);
+    console.error('Full error object:', error);
     return res.status(500).json({ error: error.message });
   }
 });

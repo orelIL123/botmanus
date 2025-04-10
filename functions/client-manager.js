@@ -78,10 +78,13 @@ class ClientManager {
 
   // Get client information
   async getClient(clientId) {
+    console.log(`getClient called with clientId: [${clientId}]`);
     try {
+      console.log(`Attempting to get document: clients/${clientId}`);
       const clientDoc = await this.db.collection('clients').doc(clientId).get();
+      console.log(`Firestore get() result exists: ${clientDoc.exists}`);
       if (!clientDoc.exists) {
-        throw new Error(`Client with ID ${clientId} not found`);
+        throw new Error(`Client with ID ${clientId} not found in Firestore`);
       }
 
       return clientDoc.data();
